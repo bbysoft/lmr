@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Legacy Map Reader", "Legacy Map Reader\Legacy Map Reader.vcproj", "{C05767B5-E0BB-4B6F-8D13-6FD6ECE40C04}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9} = {08C0C784-F586-4CAA-8951-8ADF1586C0E9}
+		{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551} = {BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Storm", "Storm\Storm.vcproj", "{08C0C784-F586-4CAA-8951-8ADF1586C0E9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PKLib", "PKLib\PKLib.vcproj", "{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}"
+	ProjectSection(ProjectDependencies) = postProject
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9} = {08C0C784-F586-4CAA-8951-8ADF1586C0E9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C05767B5-E0BB-4B6F-8D13-6FD6ECE40C04}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C05767B5-E0BB-4B6F-8D13-6FD6ECE40C04}.Debug|Win32.Build.0 = Debug|Win32
+		{C05767B5-E0BB-4B6F-8D13-6FD6ECE40C04}.Release|Win32.ActiveCfg = Release|Win32
+		{C05767B5-E0BB-4B6F-8D13-6FD6ECE40C04}.Release|Win32.Build.0 = Release|Win32
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Debug|Win32.ActiveCfg = Release|Win32
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Debug|Win32.Build.0 = Release|Win32
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Release|Win32.ActiveCfg = Release|Win32
+		{08C0C784-F586-4CAA-8951-8ADF1586C0E9}.Release|Win32.Build.0 = Release|Win32
+		{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}.Debug|Win32.Build.0 = Debug|Win32
+		{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}.Release|Win32.ActiveCfg = Release|Win32
+		{BB8B0BBC-2D1A-4976-A5E0-95D9B5757551}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
