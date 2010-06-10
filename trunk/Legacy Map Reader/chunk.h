@@ -1,6 +1,7 @@
 #pragma once
 #include <windows.h>
-#include <windef.h>
+//#include <windef.h>
+
 #include "storm.h"
 #include "main.h"
 #include "chunkstructure.h"
@@ -11,6 +12,7 @@
 #include "chunks/side.h"
 #include "chunks/owner.h"
 #include "chunks/tileset.h"
+#include "chunks/matrixmap.h"
 
 /* Starcraft Chunks */
 #include "chunks/Starcraft/strings.h"
