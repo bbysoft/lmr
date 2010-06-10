@@ -21,7 +21,8 @@
 			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
 			IntermediateDirectory="$(ConfigurationName)"
 			ConfigurationType="1"
-			CharacterSet="1"
+			UseOfMFC="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -40,14 +41,17 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				UseUnicodeResponseFiles="false"
 				Optimization="0"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				StringPooling="true"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
-				WarningLevel="3"
+				WarningLevel="4"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4127; 4996; 4100"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -60,7 +64,11 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				UseUnicodeResponseFiles="false"
+				AdditionalDependencies="user32.lib"
+				OutputFile="$(SolutionDir)\Final\$(ProjectName).exe"
 				LinkIncremental="2"
+				GenerateManifest="false"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -195,6 +203,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\chunks\matrixmap.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\chunks\owner.cpp"
 					>
 				</File>
@@ -254,6 +266,10 @@
 				>
 				<File
 					RelativePath=".\chunks\dimensions.h"
+					>
+				</File>
+				<File
+					RelativePath=".\chunks\matrixmap.h"
 					>
 				</File>
 				<File

@@ -11,11 +11,11 @@ chunkdef AllRequired[] = {
   { REVERSE('ERA '), &GetTileset, CHUNK_REQUIRED },
   { REVERSE('OWNR'), &GetOwner, CHUNK_REQUIRED },
   { REVERSE('SIDE'), &GetSide, CHUNK_REQUIRED },
-  { REVERSE('MTXM'), NULL, CHUNK_REQUIRED }
+  { REVERSE('MTXM'), &GetMatrixMap, CHUNK_REQUIRED }
 };
 
 chunkdef StarcraftRequired[] = {
-  { REVERSE('STR '), NULL, CHUNK_REQUIRED },
+  { REVERSE('STR '), &GetStrings, CHUNK_REQUIRED },
   { REVERSE('SPRP'), NULL, CHUNK_REQUIRED },
   { REVERSE('FORC'), NULL, CHUNK_REQUIRED },
   { REVERSE('VCOD'), NULL, CHUNK_REQUIRED }
