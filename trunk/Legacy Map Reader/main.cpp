@@ -5,7 +5,7 @@ HANDLE  ghFile = NULL;
 
 char illegal[] = "*?\"<>|";
 
-void *gpChkBuffer = NULL;
+BYTE *gpbChkBuffer = NULL;
 DWORD gdwChunkSize;
 
 void Debug(const char *format, ...)
@@ -53,10 +53,10 @@ void Fatal(bool choice, const char *format, ...)
     ghMpq = NULL;
   }
 
-  if ( gpChkBuffer )
+  if ( gpbChkBuffer )
   {
-    SMemFree(gpChkBuffer, __FILE__, __LINE__, 0);
-    gpChkBuffer = NULL;
+    SMemFree(gpbChkBuffer, __FILE__, __LINE__, 0);
+    gpbChkBuffer = NULL;
   }
   exit(1);
 }
@@ -127,12 +127,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
       Fatal(false, "Bad file size.");
 
     // Create file buffer
-    gpChkBuffer = SMemAlloc(gdwChunkSize, __FILE__, __LINE__, 0);
-    if ( !gpChkBuffer )
+    gpbChkBuffer = (BYTE*)SMemAlloc(gdwChunkSize, __FILE__, __LINE__, 0);
+    if ( !gpbChkBuffer )
       Fatal(false, "Unable to allocate %d bytes of memory.", gdwChunkSize);
 
     // Read file to buffer
-    SFileReadFile(ghFile, gpChkBuffer, gdwChunkSize, &dwBytesRead, 0);
+    SFileReadFile(ghFile, gpbChkBuffer, gdwChunkSize, &dwBytesRead, 0);
     if ( dwBytesRead != gdwChunkSize )
       Fatal(false, "Unable to read chunk data.");
 
@@ -154,8 +154,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 
 
 // Free memory
-  SMemFree(gpChkBuffer, __FILE__, __LINE__, 0);
-  gpChkBuffer = NULL;
+  SMemFree(gpbChkBuffer, __FILE__, __LINE__, 0);
+  gpbChkBuffer = NULL;
   return 0;
 }
 

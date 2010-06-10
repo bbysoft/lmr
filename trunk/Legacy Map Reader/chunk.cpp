@@ -158,7 +158,7 @@ void ReadChunkData(chunkdef *chunks, DWORD dwCount)
   for (DWORD i = 0; i < dwCount; i++)
   {
     // Start the search
-    chunk *data = (chunk*)gpChkBuffer;
+    chunk *data = (chunk*)gpbChkBuffer;
     bool found = false;
     while(1)
     {
@@ -176,7 +176,7 @@ void ReadChunkData(chunkdef *chunks, DWORD dwCount)
       }
 
       // Go to next chunk
-      if ( ((DWORD)data + data->dwSize + 16) > ((DWORD)gpChkBuffer + gdwChunkSize) )
+      if ( ((DWORD)data + data->dwSize + 16) > ((DWORD)gpbChkBuffer + gdwChunkSize) )
         break;
       data = (chunk*)((DWORD)data + data->dwSize + 8);
     }

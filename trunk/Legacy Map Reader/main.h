@@ -4,7 +4,7 @@
 #include "storm.h"
 #include "chunk.h"
 
-extern void   *gpChkBuffer;
+extern BYTE   *gpbChkBuffer;
 extern DWORD  gdwChunkSize;
 
 void Debug(const char *format, ...);
