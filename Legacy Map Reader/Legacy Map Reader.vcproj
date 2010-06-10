@@ -192,6 +192,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\map.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\replay.cpp"
 				>
 			</File>
@@ -225,10 +229,18 @@
 				<Filter
 					Name="Warcraft2"
 					>
+					<File
+						RelativePath=".\chunks\Warcraft2\w2units.cpp"
+						>
+					</File>
 				</Filter>
 				<Filter
 					Name="Starcraft"
 					>
+					<File
+						RelativePath=".\chunks\Starcraft\bwunits.cpp"
+						>
+					</File>
 					<File
 						RelativePath=".\chunks\Starcraft\strings.cpp"
 						>
@@ -251,6 +263,10 @@
 			</File>
 			<File
 				RelativePath=".\main.h"
+				>
+			</File>
+			<File
+				RelativePath=".\map.h"
 				>
 			</File>
 			<File
@@ -292,6 +308,10 @@
 					Name="Starcraft"
 					>
 					<File
+						RelativePath=".\chunks\Starcraft\bwunits.h"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\strings.h"
 						>
 					</File>
@@ -299,6 +319,10 @@
 				<Filter
 					Name="Warcraft2"
 					>
+					<File
+						RelativePath=".\chunks\Warcraft2\w2units.h"
+						>
+					</File>
 				</Filter>
 			</Filter>
 		</Filter>
