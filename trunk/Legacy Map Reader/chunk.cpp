@@ -23,7 +23,7 @@ chunkdef StarcraftRequired[] = {
 
 chunkdef StarcraftAdditionalReq[] = {
   { REVERSE('THG2'), NULL, CHUNK_REQUIRED },
-  { REVERSE('UNIT'), NULL, CHUNK_REQUIRED }
+  { REVERSE('UNIT'), &GetBroodwarUnits, CHUNK_REQUIRED }
 };
 
 chunkdef BroodwarAdditionalReq[] = {
@@ -39,7 +39,7 @@ chunkdef WarcraftReq[] = {
   { REVERSE('SQM '), NULL, CHUNK_REQUIRED },
   { REVERSE('OILM'), NULL, CHUNK_REQUIRED },
   { REVERSE('REGM'), NULL, CHUNK_REQUIRED },
-  { REVERSE('UNIT'), NULL, CHUNK_REQUIRED }
+  { REVERSE('UNIT'), &GetWar2Units, CHUNK_REQUIRED | CHUNK_ONCE }
 };
 
 chunkdef WarcraftOptional[] = {
