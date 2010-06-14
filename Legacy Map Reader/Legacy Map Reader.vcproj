@@ -242,7 +242,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\force.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\strings.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\chunks\Starcraft\vcode.cpp"
 						>
 					</File>
 				</Filter>
@@ -312,7 +320,15 @@
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\force.h"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\strings.h"
+						>
+					</File>
+					<File
+						RelativePath=".\chunks\Starcraft\vcode.h"
 						>
 					</File>
 				</Filter>

@@ -17,8 +17,8 @@ chunkdef AllRequired[] = {
 chunkdef StarcraftRequired[] = {
   { REVERSE('STR '), &GetStrings, CHUNK_REQUIRED },
   { REVERSE('SPRP'), NULL, CHUNK_REQUIRED },
-  { REVERSE('FORC'), NULL, CHUNK_REQUIRED },
-  { REVERSE('VCOD'), NULL, CHUNK_REQUIRED }
+  { REVERSE('FORC'), &GetForces, CHUNK_REQUIRED },
+  { REVERSE('VCOD'), &CheckVCode, CHUNK_REQUIRED }
 };
 
 chunkdef StarcraftAdditionalReq[] = {

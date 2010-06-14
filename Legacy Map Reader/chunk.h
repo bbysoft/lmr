@@ -19,6 +19,8 @@
 /* Starcraft Chunks */
 #include "chunks/Starcraft/strings.h"
 #include "chunks/Starcraft/bwunits.h"
+#include "chunks/Starcraft/vcode.h"
+#include "chunks/Starcraft/force.h"
 
 /* Warcraft II Chunks */
 #include "chunks/Warcraft2/w2units.h"
