@@ -61,9 +61,8 @@ bool __stdcall GetWar2Units(chunk *pChunk)
     else
       continue;
 
-    // Don't go over the total unit limit
-    if ( war2Units.size() < 1600 )
-      war2Units.push_back(units[i]); // Assign the unit to the vector
+    // Assign the unit to the vector
+    war2Units.push_back(units[i]);
   }
 
   return true;

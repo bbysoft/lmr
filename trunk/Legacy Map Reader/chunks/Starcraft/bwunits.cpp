@@ -53,9 +53,8 @@ bool __stdcall GetBroodwarUnits(chunk *pChunk)
       continue;
     }
 
-    // Don't go over the unit limit
-    if ( bwUnits.size() < 1700 )
-      bwUnits.push_back(units[i]); // Assign the unit to the vector
+    // Assign the unit to the vector
+    bwUnits.push_back(units[i]);
   }
   return true;
 }
