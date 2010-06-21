@@ -16,18 +16,18 @@ chunkdef AllRequired[] = {
 
 chunkdef StarcraftRequired[] = {
   { REVERSE('STR '), &GetStrings, CHUNK_REQUIRED },
-  { REVERSE('SPRP'), NULL, CHUNK_REQUIRED },
+  { REVERSE('SPRP'), &GetScenarioProperties, CHUNK_REQUIRED },
   { REVERSE('FORC'), &GetForces, CHUNK_REQUIRED },
   { REVERSE('VCOD'), &CheckVCode, CHUNK_REQUIRED }
 };
 
 chunkdef StarcraftAdditionalReq[] = {
-  { REVERSE('THG2'), NULL, CHUNK_REQUIRED },
+  { REVERSE('THG2'), &GetBroodwarSprites2, CHUNK_REQUIRED },
   { REVERSE('UNIT'), &GetBroodwarUnits, CHUNK_REQUIRED }
 };
 
 chunkdef BroodwarAdditionalReq[] = {
-  { REVERSE('COLR'), NULL, CHUNK_REQUIRED }
+  { REVERSE('COLR'), &GetColor, CHUNK_REQUIRED }
 };
 
 chunkdef WarcraftReq[] = {
@@ -51,7 +51,7 @@ chunkdef WarcraftOptional[] = {
 };
 
 chunklist chunks[] = {
-  { WARCRAFT2, "Warcraft II Retail", 16,
+  { WARCRAFT2, "Warcraft II: Tides of Darkness Retail", 16,
     {
       MAKECHUNKHEADER(AllRequired),
       MAKECHUNKHEADER(WarcraftReq),
@@ -61,7 +61,7 @@ chunklist chunks[] = {
       { NULL, 0 }
     }
   },
-  { WARCRAFT2_EXP, "Warcraft II Battle.net Edition Retail", 16,
+  { WARCRAFT2_EXP, "Warcraft II: Beyond The Dark Portal Retail", 16,
     {
       MAKECHUNKHEADER(AllRequired),
       MAKECHUNKHEADER(WarcraftReq),
@@ -121,7 +121,7 @@ chunklist chunks[] = {
       { NULL, 0 }
     }
   },
-  { BROODWAR_BETA, "Broodwar Battle.net Beta", 12,
+  { BROODWAR_BETA, "Starcraft: Broodwar Battle.net Beta", 12,
     {
       MAKECHUNKHEADER(AllRequired),
       MAKECHUNKHEADER(StarcraftRequired),
@@ -131,7 +131,7 @@ chunklist chunks[] = {
       { NULL, 0 }
     }
   },
-  { BROODWAR_STAREDIT, "Broodwar Unknown (Staredit only)", 12,
+  { BROODWAR_STAREDIT, "Starcraft: Broodwar Unknown (Staredit only)", 12,
     {
       MAKECHUNKHEADER(AllRequired),
       MAKECHUNKHEADER(StarcraftRequired),
@@ -141,7 +141,7 @@ chunklist chunks[] = {
       { NULL, 0 }
     }
   },
-  { BROODWAR, "Broodwar Retail", 12,
+  { BROODWAR, "Starcraft: Broodwar Retail", 12,
     {
       MAKECHUNKHEADER(AllRequired),
       MAKECHUNKHEADER(StarcraftRequired),

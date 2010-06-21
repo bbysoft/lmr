@@ -242,11 +242,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\color.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\force.cpp"
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\sproperties.cpp"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\strings.cpp"
+						>
+					</File>
+					<File
+						RelativePath=".\chunks\Starcraft\thingy2.cpp"
 						>
 					</File>
 					<File
@@ -320,11 +332,23 @@
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\color.h"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\force.h"
 						>
 					</File>
 					<File
+						RelativePath=".\chunks\Starcraft\sproperties.h"
+						>
+					</File>
+					<File
 						RelativePath=".\chunks\Starcraft\strings.h"
+						>
+					</File>
+					<File
+						RelativePath=".\chunks\Starcraft\thingy2.h"
 						>
 					</File>
 					<File
