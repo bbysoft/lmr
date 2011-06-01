@@ -1,7 +1,7 @@
 #pragma once
 #include <windows.h>
 #include <stdio.h>
-#include "storm.h"
+#include <storm.h>
 #include "chunk.h"
 
 extern BYTE   *gpbChkBuffer;

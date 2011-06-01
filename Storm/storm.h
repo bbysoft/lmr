@@ -883,3 +883,4 @@ int STORMAPI SBigNew(void **buffer);
 int STORMAPI SBigPowMod(void *buffer1, void *buffer2, int a3, int a4);
 
 int STORMAPI SBigToBinaryBuffer(void *buffer, int length, int a3, int a4);
+
