@@ -124,6 +124,7 @@
 				UseUnicodeResponseFiles="false"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="../Storm"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -291,10 +292,6 @@
 			</File>
 			<File
 				RelativePath=".\replay.h"
-				>
-			</File>
-			<File
-				RelativePath=".\storm.h"
 				>
 			</File>
 			<Filter
