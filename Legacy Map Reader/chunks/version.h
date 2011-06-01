@@ -16,4 +16,4 @@
 
 extern WORD gwVersion;
 
-bool __stdcall GetVersion(chunk *pChunk);
+bool __stdcall GetMapVersion(chunk *pChunk);

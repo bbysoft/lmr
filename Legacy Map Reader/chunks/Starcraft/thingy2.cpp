@@ -1,29 +1,31 @@
 #include "thingy2.h"
 
-struct Thingy2
+struct Thingy2Entry
 {
-  DWORD oshit;
+  WORD    wType;
+  WPOINT  position;
+  BYTE    wOwner;
+  BYTE    bUnused;
+  WORD    wFlags;
 };
 
-std::vector<Thingy2> Sprites;
+std::vector<Thingy2Entry> Sprites;
 
 bool __stdcall GetBroodwarSprites2(chunk *pChunk)
 {
-  // Retrieve unit count
-  DWORD dwSpriteCount = pChunk->dwSize / sizeof(Thingy2);
+  // Retrieve sprite count
+  DWORD dwSpriteCount = pChunk->dwSize / sizeof(Thingy2Entry);
 
   // Verify section size
-  if ( pChunk->dwSize % sizeof(Thingy2) )
+  if ( pChunk->dwSize % sizeof(Thingy2Entry) )
     return false;
 
   // Localize a pointer to the data
-  Thingy2 *sprites = (Thingy2*)pChunk->data;
+  Thingy2Entry *sprites = (Thingy2Entry*)pChunk->data;
 
-  // Iterate through each unit
-  for ( unsigned int i = 0; i < dwSpriteCount; i++ )
-  {
-    // Assign the sprite to the vector
+  // Iterate through each sprite and assign it to the vector
+  for ( unsigned int i = 0; i < dwSpriteCount; ++i )
     Sprites.push_back(sprites[i]);
-  }
+
   return true;
 }

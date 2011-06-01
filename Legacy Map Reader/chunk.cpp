@@ -2,35 +2,35 @@
 
 chunklist *gpChunk;
 
-chunkdef Primary[] = {
-  { REVERSE('VER '), &GetVersion, CHUNK_REQUIRED | CHUNK_ONCE }
+chunkdef PrimaryChunks[] = {
+  { REVERSE('VER '), &GetMapVersion, CHUNK_REQUIRED | CHUNK_ONCE }
 };
 
-chunkdef AllRequired[] = {
-  { REVERSE('DIM '), &GetDimensions, CHUNK_REQUIRED },
-  { REVERSE('ERA '), &GetTileset, CHUNK_REQUIRED },
-  { REVERSE('OWNR'), &GetOwner, CHUNK_REQUIRED },
-  { REVERSE('SIDE'), &GetSide, CHUNK_REQUIRED },
-  { REVERSE('MTXM'), &GetMatrixMap, CHUNK_REQUIRED }
+chunkdef AllRequiredChunks[] = {
+  { REVERSE('DIM '), &GetDimensions,  CHUNK_REQUIRED },
+  { REVERSE('ERA '), &GetTileset,     CHUNK_REQUIRED },
+  { REVERSE('OWNR'), &GetOwner,       CHUNK_REQUIRED },
+  { REVERSE('SIDE'), &GetSide,        CHUNK_REQUIRED },
+  { REVERSE('MTXM'), &GetMatrixMap,   CHUNK_REQUIRED }
 };
 
-chunkdef StarcraftRequired[] = {
-  { REVERSE('STR '), &GetStrings, CHUNK_REQUIRED },
-  { REVERSE('SPRP'), &GetScenarioProperties, CHUNK_REQUIRED },
-  { REVERSE('FORC'), &GetForces, CHUNK_REQUIRED },
-  { REVERSE('VCOD'), &CheckVCode, CHUNK_REQUIRED }
+chunkdef StarcraftRequiredChunks[] = {
+  { REVERSE('STR '), &GetStrings,             CHUNK_REQUIRED },
+  { REVERSE('SPRP'), &GetScenarioProperties,  CHUNK_REQUIRED },
+  { REVERSE('FORC'), &GetForces,              CHUNK_REQUIRED },
+  { REVERSE('VCOD'), &CheckVCode,             CHUNK_REQUIRED }
 };
 
-chunkdef StarcraftAdditionalReq[] = {
-  { REVERSE('THG2'), &GetBroodwarSprites2, CHUNK_REQUIRED },
-  { REVERSE('UNIT'), &GetBroodwarUnits, CHUNK_REQUIRED }
+chunkdef StarcraftAdditionalReqChunks[] = {
+  { REVERSE('THG2'), &GetBroodwarSprites2,  CHUNK_REQUIRED },
+  { REVERSE('UNIT'), &GetBroodwarUnits,     CHUNK_REQUIRED }
 };
 
-chunkdef BroodwarAdditionalReq[] = {
+chunkdef BroodwarAdditionalReqChunks[] = {
   { REVERSE('COLR'), &GetColor, CHUNK_REQUIRED }
 };
 
-chunkdef WarcraftReq[] = {
+chunkdef WarcraftReqChunks[] = {
   { REVERSE('TYPE'), NULL, CHUNK_REQUIRED },
   { REVERSE('DESC'), NULL, CHUNK_REQUIRED },
   { REVERSE('SGLD'), NULL, CHUNK_REQUIRED },
@@ -42,7 +42,7 @@ chunkdef WarcraftReq[] = {
   { REVERSE('UNIT'), &GetWar2Units, CHUNK_REQUIRED | CHUNK_ONCE }
 };
 
-chunkdef WarcraftOptional[] = {
+chunkdef WarcraftOptionalChunks[] = {
   { REVERSE('SIGN'), NULL, 0 },
   { REVERSE('UDTA'), NULL, 0 },
   { REVERSE('UGRD'), NULL, 0 },
@@ -50,12 +50,12 @@ chunkdef WarcraftOptional[] = {
   { REVERSE('AIPL'), NULL, 0 }
 };
 
-chunklist chunks[] = {
+chunklist chunksList[] = {
   { WARCRAFT2, "Warcraft II: Tides of Darkness Retail", 16,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(WarcraftReq),
-      MAKECHUNKHEADER(WarcraftOptional),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(WarcraftReqChunks),
+      MAKECHUNKHEADER(WarcraftOptionalChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 }
@@ -63,9 +63,9 @@ chunklist chunks[] = {
   },
   { WARCRAFT2_EXP, "Warcraft II: Beyond The Dark Portal Retail", 16,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(WarcraftReq),
-      MAKECHUNKHEADER(WarcraftOptional),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(WarcraftReqChunks),
+      MAKECHUNKHEADER(WarcraftOptionalChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 }
@@ -73,8 +73,8 @@ chunklist chunks[] = {
   },
   { STARCRAFT_BETA_EARLY, "Unknown Starcraft Beta (Early Beta?)", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 },
@@ -83,8 +83,8 @@ chunklist chunks[] = {
   },
   { STARCRAFT_BETA, "Starcraft Battle.net Beta", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 },
@@ -93,9 +93,9 @@ chunklist chunks[] = {
   },
   { STARCRAFT, "Starcraft Retail", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 }
@@ -103,19 +103,19 @@ chunklist chunks[] = {
   },
   { STARCRAFT_STAREDIT, "Starcraft Unknown (Staredit only)", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 }
     }
   },
-  { STARCRAFT_ENHANCED, "Starcraft Enhanced (1.04)", 12,
+  { STARCRAFT_ENHANCED, "Starcraft Enhanced (1.04) Retail", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 },
       { NULL, 0 }
@@ -123,30 +123,30 @@ chunklist chunks[] = {
   },
   { BROODWAR_BETA, "Starcraft: Broodwar Battle.net Beta", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
-      MAKECHUNKHEADER(BroodwarAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
+      MAKECHUNKHEADER(BroodwarAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 }
     }
   },
   { BROODWAR_STAREDIT, "Starcraft: Broodwar Unknown (Staredit only)", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
-      MAKECHUNKHEADER(BroodwarAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
+      MAKECHUNKHEADER(BroodwarAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 }
     }
   },
   { BROODWAR, "Starcraft: Broodwar Retail", 12,
     {
-      MAKECHUNKHEADER(AllRequired),
-      MAKECHUNKHEADER(StarcraftRequired),
-      MAKECHUNKHEADER(StarcraftAdditionalReq),
-      MAKECHUNKHEADER(BroodwarAdditionalReq),
+      MAKECHUNKHEADER(AllRequiredChunks),
+      MAKECHUNKHEADER(StarcraftRequiredChunks),
+      MAKECHUNKHEADER(StarcraftAdditionalReqChunks),
+      MAKECHUNKHEADER(BroodwarAdditionalReqChunks),
       { NULL, 0 },
       { NULL, 0 }
     }
@@ -155,7 +155,7 @@ chunklist chunks[] = {
 
 void ReadChunkData(chunkdef *chunks, DWORD dwCount)
 {
-  for (DWORD i = 0; i < dwCount; i++)
+  for (unsigned int i = 0; i < dwCount; ++i)
   {
     // Start the search
     chunk *data = (chunk*)gpbChkBuffer;
@@ -190,27 +190,24 @@ void ReadChunkData(chunkdef *chunks, DWORD dwCount)
 
 void ReadScenarioFile()
 {
-  ReadChunkData(Primary, countof(Primary));
+  ReadChunkData(PrimaryChunks, countof(PrimaryChunks));
 
   // Get version
-  int i = 0;
-  while(1)
+  for ( int i = 0; i < countof(chunksList); ++i )
   {
-    // verify if the version is valid
-    if ( chunks[i].dwVersion == gwVersion )
-    {
-      gpChunk = &chunks[i];
-      Debug("Map identified as: %s", gpChunk->pszDebug);
-      for (int j = 0; j < countof(gpChunk->chunkHeader) && gpChunk->chunkHeader[j].pChunks != NULL; j++)
-        ReadChunkData(gpChunk->chunkHeader[j].pChunks, gpChunk->chunkHeader[j].dwCount);
-      break;
-    }
+    // continue if the version was not identified
+    if ( chunksList[i].dwVersion != gwVersion )
+      continue;
 
-    i++;
-    // Can't continue if version is unsupported
-    if ( i > countof(chunks) )
-      Fatal(false, "Unable to identify map version.");
+    // If the version was identified
+    gpChunk = &chunksList[i];
+    Debug("Map identified as: %s", gpChunk->pszDebug);
+    for ( int j = 0; j < countof(gpChunk->chunkHeader) && gpChunk->chunkHeader[j].pChunks; ++j )
+      ReadChunkData(gpChunk->chunkHeader[j].pChunks, gpChunk->chunkHeader[j].dwCount);
+
+    MessageBox(NULL, "Finished reading the map.", "Debug", MB_OK);
+    return;
   }
-
-  MessageBox(NULL, "Finished reading the map.", "Debug", MB_OK);
+  // Only when the version was not found
+  Fatal(false, "Unable to identify map version.");
 }

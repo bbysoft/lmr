@@ -4,9 +4,13 @@
           I will need to verify the code later.
 */
 
-#define BYTE1(x)   (*((BYTE*)&(x)+1))
-#define BYTE2(x)   (*((BYTE*)&(x)+2))
-#define BYTE3(x)   (*((BYTE*)&(x)+3))
+#define BYTE0(x)  ((BYTE)(x))
+#define BYTE1(x)  (*((BYTE*)&(x)+1))
+#define BYTE2(x)  (*((BYTE*)&(x)+2))
+#define BYTE3(x)  (*((BYTE*)&(x)+3))
+
+#define caveOut(data,shift) (  ((data) << (shift & 0x1F)) | ( (data) >> (32 - (shift & 0x1F) ))  )
+#define caveIn(data,shift)  (  ((data) >> (shift & 0x1F)) | ( (data) << (32 - (shift & 0x1F) ))  )
 
 struct VerificationCode
 {
@@ -58,79 +62,75 @@ struct PlayerData
   BYTE  nRace;
   BYTE  nTeam;
   char  szName[25];
-} gPlayerData[12];
+};
 
 struct ForceData;
 
-DWORD GetVcodeHash(DWORD vcodSize, VerificationCode *pVCode, DWORD datasize, DWORD *datalocation)
+DWORD GetVcodeHash(DWORD dwVCodeSize, VerificationCode *pVCode, DWORD dwDataSize, DWORD *pdwDatalocation)
 {
-  DWORD result = 0;
-  if ( datasize < 4 )
-    return 0;
+  DWORD dwResultHash = 0;
+  int idx1, idx2, idx3;
 
-  if ( vcodSize <= 256 * sizeof(DWORD) )
-    return 0;
-
-  for (int i = datasize / 4; i > 0; i--)
+  for (int i = dwDataSize / 4; i > 0; i--)
   {
-    for (unsigned int j = 0; j < (vcodSize - 256 * sizeof(DWORD)); j++)
+    for (unsigned int j = 0; j < (dwVCodeSize - 256 * sizeof(DWORD)); ++j)
     {
-      char altData1 = datalocation[i] & 0x1F;           // owner
-      char altData2 = BYTE1(datalocation[i]) & 0x1F;    // race
-      char altData3 = BYTE2(datalocation[i]) & 0x1F;    // force
-      char altData4 = BYTE3(datalocation[i]) & 0x1F;
-      char N_altData1 = 32 - altData1;                  // owner
-      char N_altData2 = 32 - altData2;                  // race
-      char N_altData3 = 32 - altData3;                  // force
-      char N_altData4 = 32 - altData4;
-      int v1;
-      int v2;
-      int v3;
-      switch (pVCode->bOpcode[j])
+      switch ( pVCode->bOpcode[j] )
       {
         case 0:
-          result ^= datalocation[i];
+          dwResultHash ^= pdwDatalocation[i];
           break;
         case 1:
-          result += datalocation[i];
+          dwResultHash += pdwDatalocation[i];
           break;
         case 2:
-          result -= datalocation[i];
+          dwResultHash -= pdwDatalocation[i];
           break;
         case 3:
         case 4:
         case 5:
-          result ^= pVCode->dwValue[(BYTE)datalocation[i]] ^ pVCode->dwValue[BYTE3(datalocation[i])] ^ pVCode->dwValue[BYTE1(datalocation[i])] ^ pVCode->dwValue[BYTE2(datalocation[i])];
+          dwResultHash ^= pVCode->dwValue[BYTE0(pdwDatalocation[i])] ^ 
+                          pVCode->dwValue[BYTE1(pdwDatalocation[i])] ^
+                          pVCode->dwValue[BYTE2(pdwDatalocation[i])] ^
+                          pVCode->dwValue[BYTE3(pdwDatalocation[i])];
           break;
         case 6:
-          v1 = result << altData1;
-          v2 = v1 | (result >> N_altData1);
-          v3 = (((v2 << altData2) | (v2 >> N_altData2)) << altData3)  |  (((v2 << altData2) | (v2 >> N_altData2)) >> N_altData3);
-          result = (v3 << altData4) | (v3 >> N_altData4);
+          idx1      = caveOut(dwResultHash, BYTE0(pdwDatalocation[i]) );  // owner
+          idx2      = caveOut(idx1,         BYTE1(pdwDatalocation[i]) );  // race
+          idx3      = caveOut(idx2,         BYTE2(pdwDatalocation[i]) );  // force
+          dwResultHash  = caveOut(idx3,         BYTE3(pdwDatalocation[i]) );  // null
           break;
         case 7:
-          v1 = result >> altData1;
-          v2 = v1 | (result << N_altData1);
-          v3 = (((v2 >> altData2) | (v2 << N_altData2)) >> altData3)  |  (((v2 >> altData2) | (v2 << N_altData2)) << N_altData3);
-          result = (v3 >> altData4) | (v3 << N_altData4);
+          idx1      = caveIn(dwResultHash,  BYTE0(pdwDatalocation[i]) );   // owner
+          idx2      = caveIn(idx1,          BYTE1(pdwDatalocation[i]) );   // race
+          idx3      = caveIn(idx2,          BYTE2(pdwDatalocation[i]) );   // force
+          dwResultHash  = caveIn(idx3,          BYTE3(pdwDatalocation[i]) );   // null
           break;
       } // opcode case
     } // for loop (vcod)
   } // for loop (data)
-  return result;
+  return dwResultHash;
 }
 
 bool __stdcall CheckVCode(chunk *pChunk)
 {
-  SMemZero(gPlayerData, sizeof(gPlayerData));
-  for ( int i = 0; i < 12; i++ )
+  // Verify if Verification Code is correct file size
+  if ( pChunk->dwSize != sizeof(gVCode) )
+    return false;
+
+  // Create fake player data to use for hashing
+  PlayerData plDataCheck[12] = { 0 };
+  for ( int i = 0; i < 12; ++i )
   {
-    gPlayerData[i].nRace = gbPlayerRace[i];
-    gPlayerData[i].nType = gbPlayerType[i];
+    plDataCheck[i].nRace = gbPlayerRace[i];
+    plDataCheck[i].nType = gbPlayerType[i];
     if ( i < 8 )
-      gPlayerData[i].nTeam = gForceData.bPlayerTeam[i];
+      plDataCheck[i].nTeam = gForceData.bPlayerTeam[i];
   }
-  DWORD dwChunkHash = GetVcodeHash(pChunk->dwSize, (VerificationCode*)&pChunk->data, sizeof(gPlayerData), (DWORD*)&gPlayerData);
-  DWORD dwVCodeHash = GetVcodeHash(pChunk->dwSize, &gVCode, sizeof(gPlayerData), (DWORD*)&gPlayerData);
+  // Obtain the hashes of both the constant vcode and the map's vcode.
+  DWORD dwChunkHash = GetVcodeHash(pChunk->dwSize, (VerificationCode*)&pChunk->data, sizeof(plDataCheck), (DWORD*)&plDataCheck);
+  DWORD dwVCodeHash = GetVcodeHash(sizeof(gVCode), &gVCode, sizeof(plDataCheck), (DWORD*)&plDataCheck);
+
+  // Compare the hash
   return dwChunkHash == dwVCodeHash;
 }

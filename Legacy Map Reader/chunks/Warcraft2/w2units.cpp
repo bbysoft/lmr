@@ -27,7 +27,7 @@ bool __stdcall GetWar2Units(chunk *pChunk)
   BYTE  bCounts[16];
 
   // Iterate through each unit
-  for ( unsigned int i = 0; i < dwUnitCount; i++ )
+  for ( unsigned int i = 0; i < dwUnitCount; ++i )
   {
     // Get the player owner
     BYTE bPl = units[i].bOwner;

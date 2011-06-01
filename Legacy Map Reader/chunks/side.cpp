@@ -9,6 +9,6 @@ bool __stdcall GetSide(chunk *pChunk)
     return false;
 
   // Copy the chunk data
-  SMemCopy(gbPlayerRace, pChunk->data, pChunk->dwSize);
+  memcpy(gbPlayerRace, pChunk->data, pChunk->dwSize);
   return true;
 }

@@ -6,23 +6,22 @@ void CleanupStrings()
 {
   // Free allocated memory for strings
   if ( gpMapStrings )
-    SMemFree(gpMapStrings, __FILE__, __LINE__, 0);
+    SMFree(gpMapStrings);
   gpMapStrings = NULL;
 }
 
 bool __stdcall GetStrings(chunk *pChunk)
 {
   // Free previous memory if necessary
-  if ( gpMapStrings )
-    SMemFree(gpMapStrings, __FILE__, __LINE__, 0);
+  STORMFREE(gpMapStrings);
   
   // Allocate memory for strings
-  gpMapStrings = (WORD*)SMemAlloc(pChunk->dwSize, __FILE__, __LINE__, 0);
+  gpMapStrings = (WORD*)SMAlloc(pChunk->dwSize);
   if ( gpMapStrings )
   {
     atexit(&CleanupStrings);
     // Copy the string data
-    SMemCopy(gpMapStrings, pChunk->data, pChunk->dwSize);
+    memcpy(gpMapStrings, pChunk->data, pChunk->dwSize);
     return true;
   }
   return false;
