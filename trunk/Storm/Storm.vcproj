@@ -65,14 +65,16 @@
 			<Tool
 				Name="VCLinkerTool"
 				UseUnicodeResponseFiles="false"
-				OutputFile="$(OutDir)\storm.dll"
+				OutputFile="$(IntDir)\storm.dll"
 				GenerateManifest="false"
 				ModuleDefinitionFile="storm.def"
 				SubSystem="2"
 				LinkTimeCodeGeneration="0"
+				ProfileGuidedDatabase=""
 				BaseAddress="0x15000000"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(IntDir)\$(TargetName).lib"
 				TargetMachine="1"
 			/>
 			<Tool

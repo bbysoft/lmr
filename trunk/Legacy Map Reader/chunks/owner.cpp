@@ -9,6 +9,6 @@ bool __stdcall GetOwner(chunk *pChunk)
     return false;
 
   // Copy the chunk data
-  SMemCopy(gbPlayerType, pChunk->data, pChunk->dwSize);
+  memcpy(gbPlayerType, pChunk->data, pChunk->dwSize);
   return true;
 }

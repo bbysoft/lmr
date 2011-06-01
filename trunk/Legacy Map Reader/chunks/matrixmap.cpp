@@ -5,9 +5,7 @@ WORD *pwMatrixMap;
 void FreeMatrix()
 {
   // Free allocated memory
-  if ( pwMatrixMap )
-    SMemFree(pwMatrixMap, __FILE__, __LINE__, 0);
-  pwMatrixMap = NULL;
+  STORMFREE(pwMatrixMap);
 }
 
 bool __stdcall GetMatrixMap(chunk *pChunk)
@@ -29,11 +27,11 @@ bool __stdcall GetMatrixMap(chunk *pChunk)
   // Allocate memory for tiles
   if ( !pwMatrixMap )
   {
-    pwMatrixMap = (WORD*)SMemAlloc(256 * 256 * sizeof(WORD), __FILE__, __LINE__, 0);
+    pwMatrixMap = (WORD*)SMAlloc(256 * 256 * sizeof(WORD));
     atexit(&FreeMatrix);
   }
 
   // Copy the data
-  SMemCopy(pwMatrixMap, pChunk->data, pChunk->dwSize);
+  memcpy(pwMatrixMap, pChunk->data, pChunk->dwSize);
   return true;
 }

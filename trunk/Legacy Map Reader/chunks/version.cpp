@@ -2,7 +2,7 @@
 
 WORD gwVersion;
 
-bool __stdcall GetVersion(chunk *pChunk)
+bool __stdcall GetMapVersion(chunk *pChunk)
 {
   // verify the chunk size
   if ( pChunk->dwSize != sizeof(WORD) )

@@ -9,6 +9,6 @@ bool __stdcall GetColor(chunk *pChunk)
     return false;
 
   // Copy the chunk data
-  SMemCopy(gbPlayerColor, pChunk->data, pChunk->dwSize);
+  memcpy(gbPlayerColor, pChunk->data, pChunk->dwSize);
   return true;
 }

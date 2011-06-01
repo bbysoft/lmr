@@ -35,7 +35,7 @@ bool __stdcall GetBroodwarUnits(chunk *pChunk)
   BWUnit *units = (BWUnit*)pChunk->data;
 
   // Iterate through each unit
-  for ( unsigned int i = 0; i < dwUnitCount; i++ )
+  for ( unsigned int i = 0; i < dwUnitCount; ++i )
   {
     // Get the player owner
     BYTE bPl = units[i].bOwner;

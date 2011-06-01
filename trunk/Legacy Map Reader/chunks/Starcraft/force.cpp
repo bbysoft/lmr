@@ -9,7 +9,7 @@ bool __stdcall GetForces(chunk *pChunk)
     return false;
 
   // Copy the chunk data
-  SMemZero(&gForceData, sizeof(gForceData));
-  SMemCopy(&gForceData, pChunk->data, pChunk->dwSize);
+  memset(&gForceData, 0, sizeof(gForceData));
+  memcpy(&gForceData, pChunk->data, pChunk->dwSize);
   return true;
 }

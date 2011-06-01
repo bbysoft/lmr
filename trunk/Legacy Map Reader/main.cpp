@@ -3,7 +3,7 @@
 HANDLE  ghMpq = NULL;
 HANDLE  ghFile = NULL;
 
-char illegal[] = "*?\"<>|";
+char *pszIllegalChars = "*?\"<>|";
 
 BYTE *gpbChkBuffer = NULL;
 DWORD gdwChunkSize;
@@ -42,23 +42,16 @@ void Fatal(bool choice, const char *format, ...)
     MessageBox(NULL, buffer, "Error", MB_OK | MB_ICONHAND);
 
   if ( ghFile )
-  {
     SFileCloseFile(ghFile);
-    ghFile = NULL;
-  }
+  ghFile = NULL;
 
   if ( ghMpq )
-  {
     SFileCloseArchive(ghMpq);
-    ghMpq = NULL;
-  }
+  ghMpq = NULL;
 
-  if ( gpbChkBuffer )
-  {
-    SMemFree(gpbChkBuffer, __FILE__, __LINE__, 0);
-    gpbChkBuffer = NULL;
-  }
-  exit(1);
+  STORMFREE(gpbChkBuffer);
+
+  exit(EXIT_FAILURE);
 }
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -69,22 +62,23 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
   DWORD dwBytesRead = 0;
 
 // Low level command line parse
-  if ( strlen(lpCmdLine) == 0)
+  if ( strlen(lpCmdLine) == 0 )
     Fatal(false, "Must pass a file name to the command line.");
   int k = 0;
-  for (int i = 0; lpCmdLine[i] != 0 && i < MAX_PATH; i++)
+  for ( int i = 0; lpCmdLine[i] && i < MAX_PATH; ++i )
   {
     if ( lpCmdLine[i] < ' ' )
       continue;
 
-    int j = 0;
-    for (; illegal[j] != 0 && lpCmdLine[i] != illegal[j]; j++) {}
+    char *pszBadChar = pszIllegalChars;
+    while ( *pszBadChar && lpCmdLine[i] != *pszBadChar )
+      ++pszBadChar;
 
-    if ( lpCmdLine[i] == illegal[j] )
+    if ( *pszBadChar )
       continue;
 
     szFileName[k] = lpCmdLine[i];
-    k++;
+    ++k;
   }
   szFileName[k] = 0;
 
@@ -127,7 +121,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
       Fatal(false, "Bad file size.");
 
     // Create file buffer
-    gpbChkBuffer = (BYTE*)SMemAlloc(gdwChunkSize, __FILE__, __LINE__, 0);
+    gpbChkBuffer = (BYTE*)SMAlloc(gdwChunkSize);
     if ( !gpbChkBuffer )
       Fatal(false, "Unable to allocate %d bytes of memory.", gdwChunkSize);
 
@@ -140,10 +134,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     SFileCloseFile(ghFile);
     ghFile = NULL;
     if ( ghMpq )
-    {
       SFileCloseArchive(ghMpq);
-      ghMpq = NULL;
-    }
+    ghMpq = NULL;
     break;
   }
 
@@ -152,10 +144,8 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
   ReadScenarioFile();
 
 
-
 // Free memory
-  SMemFree(gpbChkBuffer, __FILE__, __LINE__, 0);
-  gpbChkBuffer = NULL;
+  STORMFREE(gpbChkBuffer);
   return 0;
 }
 

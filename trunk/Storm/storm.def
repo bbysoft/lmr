@@ -137,9 +137,9 @@ EXPORTS
   ;SBltROP3Tiled                 @315 NONAME
 
   SBmpDecodeImage               @321 NONAME
-  
+
   SBmpLoadImage                 @323 NONAME
-  ;SBmpSaveImage                 @324 NONAME
+  SBmpSaveImage                 @324 NONAME
   SBmpAllocLoadImage            @325 NONAME
   ;SBmpSaveImageEx               @326 NONAME
 
@@ -149,19 +149,19 @@ EXPORTS
   SCodeExecute                  @334 NONAME
   ;SCodeGetPseudocode            @335 NONAME
 
-  ;SDrawAutoInitialize           @341 NONAME
+  SDrawAutoInitialize           @341 NONAME
   SDrawCaptureScreen            @342 NONAME
   ;SDrawClearSurface             @343 NONAME
   ;SDrawDestroy                  @344 NONAME
   ;SDrawFlipPage                 @345 NONAME
   SDrawGetFrameWindow           @346 NONAME
-  ;SDrawGetObjects               @347 NONAME
-  ;SDrawGetScreenSize            @348 NONAME
+  SDrawGetObjects               @347 NONAME
+  SDrawGetScreenSize            @348 NONAME
   ;SDrawGetServiceLevel          @349 NONAME
   SDrawLockSurface              @350 NONAME
   SDrawManualInitialize         @351 NONAME
   ;SDrawMessageBox               @352 NONAME
-  ;SDrawPostClose                @353 NONAME
+  SDrawPostClose                @353 NONAME
   SDrawRealizePalette           @354 NONAME
   ;SDrawSelectGdiSurface         @355 NONAME
   SDrawUnlockSurface            @356 NONAME
@@ -169,7 +169,7 @@ EXPORTS
   ;SDrawUpdateScreen             @358 NONAME
   ;SDrawWaitForVerticalBlank     @359 NONAME
 
-  ;SEvtDispatch                  @372 NONAME
+  SEvtDispatch                  @372 NONAME
   ;SEvtRegisterHandler           @373 NONAME
   ;SEvtUnregisterHandler         @374 NONAME
   ;SEvtUnregisterType            @375 NONAME
@@ -230,7 +230,7 @@ EXPORTS
   ;STransLoadI                   @439 NONAME
   STransSetDirtyArrayInfo       @440 NONAME
   ;STransUpdateDirtyArray        @441 NONAME
-  STrans442                     @442 NONAME
+  STransPointInMask             @442 NONAME
   STransCombineMasks            @443 NONAME
   ;STransCreateI                 @444 NONAME
   STransCreateE                 @445 NONAME

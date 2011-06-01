@@ -9,7 +9,7 @@ bool __stdcall GetScenarioProperties(chunk *pChunk)
     return false;
 
   // Copy the chunk data
-  SMemZero(&gSProperties, sizeof(gSProperties));
-  SMemCopy(&gSProperties, pChunk->data, pChunk->dwSize);
+  memset(&gSProperties, 0, sizeof(gSProperties));
+  memcpy(&gSProperties, pChunk->data, pChunk->dwSize);
   return true;
 }
